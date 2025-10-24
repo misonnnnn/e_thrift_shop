@@ -2,6 +2,7 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '../app/generated/prisma/default.js';
+import { returnResponse } from '../utils/helper.js';
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -90,11 +91,5 @@ router.post('/user/login', async (req, res) => {
 
 
 
-function returnResponse(isSuccess, message){
-  return {
-    'success' : isSuccess,
-    'message' : message
-  }
-}
 
 export default router;
