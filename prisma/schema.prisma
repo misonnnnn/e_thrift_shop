@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../app/generated/prisma"
 }
 
@@ -20,6 +20,7 @@ model User {
   email     String   @unique
   password  String
   username  String   @unique
+  role      String   @default("user")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
