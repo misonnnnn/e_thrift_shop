@@ -80,6 +80,7 @@ router.post('/user/login', async (req, res) => {
       expiresIn: '1d',
     });
 
+    localStorage.setItem(token);
     res.json({ token, user: { id: user.id, email: user.email, name: user.name } });
   } catch (error) {
     console.error(error);
