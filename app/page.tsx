@@ -1,65 +1,97 @@
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretRight, faCartFlatbedSuitcase, faCartShopping, faSearch, faSliders, faUser, faUserAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+	return (
+		<>
+
+			{/* nav */}
+			<div className="container">
+				<div className="w-100 p-5 d-flex justify-content-between align-items-center">
+					<div className="d-flex justify-content-around align-items-center">
+						<div className="me-3 fw-bold">Man</div>
+						<div className="me-3 fw-bold">Woman</div>
+						<div className="me-3 fw-bold">Sale</div>
+					</div>
+
+					<div>
+						<h4 className="website-name">E ThriftShop</h4>
+					</div>
+
+					<div className="d-flex justify-content-around align-items-center">
+						<div className="d-flex justify-content-around align-items-center me-2">
+							<input type="search" className="me-2 form-control form-control-sm" />
+							<FontAwesomeIcon icon={faSearch} />
+						</div>
+						<div className="me-2">
+							<FontAwesomeIcon icon ={ faUserCircle} />
+						</div>
+						<div className="me-2">
+							<FontAwesomeIcon icon ={ faCartFlatbedSuitcase} />
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{/* body */}
+
+			<div className="container">
+				<div className="w-100">
+					<div className="row m-0">
+						<div className="col-6">
+							<div>
+								<p className="home_text_2">TRENDY COLLECTION'S</p>
+								<p className="home_text_1">DRESSED TO BE NOTICED.</p>
+								<p className="home_text_3">Discover What’s Trending – Shop the Look</p>
+
+								<a href="#" className="btn btn-dark ">
+									<p className="m-0">Start Shopping <FontAwesomeIcon icon ={faCaretRight} /></p>
+								</a>
+							</div>
+						</div>
+						<div className="col-6 ">
+							<div className="relative ">
+								<Image className="relative"
+									src="/res_1.png"   // File in public/images/
+									alt="My banner"
+									width={600}
+									height={600}
+								/>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+
+				{/* featured */}
+				<div>
+					<div className="row m-0">
+						<div className="col-3">
+							<Image className="relative"
+									src="/res_2.png"   // File in public/images/
+									alt=""
+									width={200}
+									height={200}
+								/>
+						</div>
+						<div className="col">
+							<p className="fw-bold"><FontAwesomeIcon icon={faSliders} /> FEATURED</p>
+							<div className="row m-0">
+								<div className="col-4">
+									test
+								</div>
+								<div className="col-4">
+									test
+								</div>
+								<div className="col-4">
+									test
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
 }

@@ -1,26 +1,53 @@
-@import "tailwindcss";
+@import 'bootstrap';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: "VeganStyle";
+  src: url("../public/fonts/vegan-style-font/VeganStylePersonalUse-5Y58.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: #fffaf8
 }
+
+.website-name{
+    font-family: "VeganStyle";
+    text-shadow: 1px 4px 5px #aaa;
+}
+
+.text-shadow-1{
+    text-shadow: 1px 1px 1px #aaa;
+}
+
+.text-shadow-2{
+    text-shadow: 2px 2px 2px #aaa;
+}
+
+.text-shadow-3{
+    text-shadow: 3px 3px 3px #aaa;
+}
+
+.home_text_1{
+    padding:0px !important;
+    margin:0px !important;
+    font-size: 100px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    line-height: 1;
+}
+
+.home_text_2{
+    padding:0px !important;
+    margin:0px !important;
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:#aaa;
+}
+
+.home_text_3{
+    font-size: 20px;
+    border-left: #aaa 2px solid;
+    text-indent: 20px;;
+    margin-top: 50px;
+}
+
