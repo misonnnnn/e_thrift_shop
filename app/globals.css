@@ -51,3 +51,37 @@ body {
     margin-top: 50px;
 }
 
+.border-radius-top-left-20{
+    border-radius: 20px 20px 0 0;
+}
+.featured_product_outerdiv{
+    position:relative;
+    background-color: #23212a;
+}
+.featured_product_image{
+    z-index: 99;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.featured_product_text{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:#fffaf8;
+    padding:0px;
+    margin: 0px;
+}
+.featured_product_text_subtext{
+    color:#fffaf8;
+    font-size: 13px;
+}
+.featured_product_backdesign1{
+    background-color:#f0a0a6;
+    position:absolute;
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
