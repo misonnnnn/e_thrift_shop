@@ -1,9 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faCartFlatbedSuitcase, faCartShopping, faSearch, faSliders, faUser, faUserAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useState } from "react";
+
 
 export default function Home() {
+
+	const [navbarActive , setNavbarActive ] = useState(false);
 	return (
 		<>
 
@@ -15,27 +21,34 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="w-100 py-3 px-lg-5 px-md-3 px-sm-0 px-0 d-flex justify-content-between align-items-center">
-					<div className="me-3 hamburger_menu">
+					<div className="me-3 hamburger_menu" onClick={ () => setNavbarActive(true)}>
 						<div className="hamburger_menu_line hamburger_menu_line1"></div>
 						<div className="hamburger_menu_line hamburger_menu_line2"></div>
 						<div className="hamburger_menu_line hamburger_menu_line3"></div>
 					</div>
 
-					<div className="main_menu d-flex justify-content-around align-items-center">
-						<div className="me-3 fw-bold">
+					<div className={ `main_menu d-flex justify-content-around align-items-center ` + (navbarActive ? `d-block start-0` : '') }>
+						<div className="me-3 hamburger_menu_close" onClick={ () => setNavbarActive(false)}>
+							<div className="hamburger_menu_close_line hamburger_menu_close_line1"></div>
+							<div className="hamburger_menu_close_line hamburger_menu_close_line2"></div>
+						</div>
+
+						<div className="me-3 main_menu_link fw-bold">
 							<Link className="text-dark" href="/products/category/man">Man</Link>
+							<hr className="d-block d-md-none text-light " />
 						</div>
-						<div className="me-3 fw-bold">
+						<div className="me-3 main_menu_link fw-bold">
 							<Link className="text-dark" href="/products/category/woman">Woman</Link>
+							<hr className="d-block d-md-none text-light" />
 						</div>
-						<div className="me-3 fw-bold">
+						<div className="me-3 main_menu_link fw-bold">
 							<Link className="text-dark" href="/products/category/sale">Sale</Link>
 						</div>
 					</div>
 
 					<div className="d-flex justify-content-around align-items-center">
 						<div className="d-flex justify-content-around align-items-center me-2">
-							<input type="search" className="me-2 form-control form-control-sm shadow-none" />
+							<input type="search" className="me-2 form-control form-control-sm shadow-none" placeholder="Search product here" />
 							<FontAwesomeIcon icon={faSearch} />
 						</div>
 						<div className="me-2">
