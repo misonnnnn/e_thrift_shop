@@ -9,7 +9,18 @@ export default function Home() {
 
 			{/* nav */}
 			<div className="container ">
+				<div className="w-100 pt-3">
+					<div>
+						<h4 className="website-name text-center">E-ThriftShop</h4>
+					</div>
+				</div>
 				<div className="w-100 py-3 px-lg-5 px-md-3 px-sm-0 px-0 d-flex justify-content-between align-items-center">
+					<div className="me-3 hamburger_menu">
+						<div className="hamburger_menu_line hamburger_menu_line1"></div>
+						<div className="hamburger_menu_line hamburger_menu_line2"></div>
+						<div className="hamburger_menu_line hamburger_menu_line3"></div>
+					</div>
+
 					<div className="main_menu d-flex justify-content-around align-items-center">
 						<div className="me-3 fw-bold">
 							<Link className="text-dark" href="/products/category/man">Man</Link>
@@ -22,19 +33,9 @@ export default function Home() {
 						</div>
 					</div>
 
-					<div className="me-3 hamburger_menu">
-						<div className="hamburger_menu_line hamburger_menu_line1"></div>
-						<div className="hamburger_menu_line hamburger_menu_line2"></div>
-						<div className="hamburger_menu_line hamburger_menu_line3"></div>
-					</div>
-
-					<div>
-						<h4 className="website-name">E ThriftShop</h4>
-					</div>
-
 					<div className="d-flex justify-content-around align-items-center">
 						<div className="d-flex justify-content-around align-items-center me-2">
-							<input type="search" className="me-2 form-control form-control-sm" />
+							<input type="search" className="me-2 form-control form-control-sm shadow-none" />
 							<FontAwesomeIcon icon={faSearch} />
 						</div>
 						<div className="me-2">
@@ -80,21 +81,58 @@ export default function Home() {
 
 				{/* featured */}
 				<div>
-					<div className="row m-0">
-						<div className="col-2 position-relative">
-							<Image className="position-relative mt-5"
-									src="/res_2.png"   // File in public/images/
-									alt=""
-									width={200}
-									height={200}
-								/>
-						</div>
-						<div className="col">
+					<div className="row m-0 mt-5">
+						<div className="col-lg-10 mx-auto">
 							<p className="fw-bold"><FontAwesomeIcon icon={faSliders} /> FEATURED</p>
 							<div className="featured_product_outerdiv border-radius-top-left-20 p-3">
 								<div className="row m-0">
 									<div className="col-lg-4 position-relative py-3">
-										<div className="d-flex border-end border-1 border-light">
+										<div className="d-flex justify-content-center">
+											<div className="position-relative">
+												<div className="featured_product_backdesign1"></div>
+												<Image className="featured_product_image"
+													src="/featured_products/2.png"   // File in public/images/
+													alt=""
+													width={150}
+													height={150}
+												/>
+											</div>
+											<div className="featured_product_details align-items-center d-flex">
+												<div>
+													<p className="featured_product_text">HOODIE</p>
+													<div className="featured_product_text_subtext">See All</div>
+												</div>
+											</div>
+										</div>
+
+										<div className="featured_product_vertical_line d-none d-lg-block"></div>
+									</div>
+
+									<div className="col-lg-4 position-relative py-3">
+										<div className="d-flex justify-content-center">
+											<div className="position-relative">
+												<div className="featured_product_backdesign1"></div>
+												<Image className="featured_product_image"
+													src="/featured_products/2.png"   // File in public/images/
+													alt=""
+													width={150}
+													height={150}
+												/>
+											</div>
+											<div className="featured_product_details align-items-center d-flex">
+												<div>
+													<p className="featured_product_text">HOODIE</p>
+													<div className="featured_product_text_subtext">See All</div>
+												</div>
+											</div>
+										</div>
+
+										<div className="featured_product_vertical_line d-none d-lg-block"></div>
+									</div>
+									
+
+									<div className="col-lg-4 position-relative py-3">
+										<div className="d-flex justify-content-center">
 											<div className="position-relative">
 												<div className="featured_product_backdesign1"></div>
 												<Image className="featured_product_image"
@@ -113,26 +151,6 @@ export default function Home() {
 										</div>
 									</div>
 									
-
-									<div className="col-lg-4 position-relative py-3">
-										<div className="d-flex">
-											<div className="position-relative">
-												<div className="featured_product_backdesign1"></div>
-												<Image className="featured_product_image"
-													src="/featured_products/2.png"   // File in public/images/
-													alt=""
-													width={150}
-													height={150}
-												/>
-											</div>
-											<div className="featured_product_details align-items-center d-flex">
-												<div>
-													<p className="featured_product_text">HOODIE</p>
-													<div className="featured_product_text_subtext">See All</div>
-												</div>
-											</div>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
