@@ -21,6 +21,6 @@ app.get('/test', (req, res)=>{
 
 
 
-const PORT = process.env.API_PORT || 5000;
-const BASE_PATH = process.env.API_BASE_PATH || `http://localhost:${PORT}`;
+const PORT = process.env.PORT || 5000;
+const BASE_PATH = process.env.NEXT_PUBLIC_API_BASE_PATH || `http://localhost:${PORT}`;
 app.listen(PORT, () => console.log(`Server running on ${BASE_PATH}`))
