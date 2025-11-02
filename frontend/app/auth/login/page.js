@@ -5,6 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function LoginPage() {
+  
+  const PORT = process.env.PORT || 5000;
+  const BASE_PATH = process.env.NEXT_PUBLIC_API_BASE_PATH || `http://localhost:${PORT}`;
+
   const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -17,7 +21,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch(`${BASE_PATH}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -44,7 +48,7 @@ export default function LoginPage() {
     <div className="d-flex justify-content-center align-items-center vh-100 vw-100">
       <form
         onSubmit={handleLogin}
-        className="bg-light rounded rounded-3 shadow p-5 w-50"
+        className="bg-light rounded rounded-3 shadow p-5 w-lg-50"
       >
         <h2 className="text-center">Welcome Back</h2>
         <p className="text-muted text-center"> Sign in to continue to your account</p>
