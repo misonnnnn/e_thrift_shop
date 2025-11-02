@@ -1,26 +1,3 @@
-import dotenv from 'dotenv';
-import express from 'express';
-import AuthRoutes from './routes/authRoutes.js';
-import usersRoutes from './routes/usersRoutes.js';
-
-const app = express();
-
-dotenv.config();
-
-app.use(express.json());
-app.use('/api', AuthRoutes);
-app.use('/api', usersRoutes);
-
-//api routes
-app.get('/test', (req, res)=>{
-    return res.status(200).json({
-        'success' : true,
-        'data' : 'success api'
-    })
-})
-
-
-
-const PORT = process.env.PORT || 5000;
-const BASE_PATH = process.env.NEXT_PUBLIC_API_BASE_PATH || `http://localhost:${PORT}`;
-app.listen(PORT, () => console.log(`Server running on ${BASE_PATH}`))
+version https://git-lfs.github.com/spec/v1
+oid sha256:32f27782fddc653be1c1fce80e81b45ccf56011626b29c0c176b11b5bf6747fa
+size 656
