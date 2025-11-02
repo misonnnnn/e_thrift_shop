@@ -191,3 +191,31 @@ body {
     height: 100%;
     top:0px;
 }
+
+
+/* login */
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 32px 0;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.divider-text {
+  position: relative;
+  display: inline-block;
+  padding: 0 16px;
+  background: #ffffff;
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 500;
+}
