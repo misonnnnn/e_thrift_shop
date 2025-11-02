@@ -1,0 +1,27 @@
+{
+  "name": "e_thrift_shop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+     "start": "node server.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.18.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.15.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "prisma": "^6.18.0",
+    "typescript": "^5"
+  },
+  "description": "E Thrift Shop (E-commerce) ---",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}

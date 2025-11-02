@@ -1,7 +1,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { PrismaClient } from '../app/generated/prisma/default.js';
+import { PrismaClient } from '../../frontend/app/generated/prisma/default.js';
 import { returnResponse } from '../utils/helper.js';
 
 const router = express.Router();
