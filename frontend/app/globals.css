@@ -59,7 +59,6 @@ body {
     background-color: #23212a;
 }
 .featured_product_image{
-    z-index: 99;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -153,7 +152,7 @@ body {
         padding-top: 60px;
         box-shadow: 0px .5px 5px 0px #23212a;
         width: 200px;
-        z-index: 99;
+        z-index: 9;
         transition: .5s;
         background-color: #23212a;
         /* display: none !important; */
