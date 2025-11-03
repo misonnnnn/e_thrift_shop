@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function RegisterPage() {
@@ -31,48 +32,68 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <form
-        onSubmit={handleRegister}
-        className="bg-white p-6 rounded-lg shadow-md w-80"
-      >
-        <h2 className="text-xl font-semibold mb-4 text-center">Register</h2>
+    <div className="d-flex justify-content-center align-items-center vh-100 vw-100">
+      <div className="row w-100">
+        <div className="col-xl-4 col-lg-6 col-md-8 col-sm-12 mx-auto">
+            <form
+              onSubmit={handleRegister}
+              className="bg-light rounded rounded-3 shadow p-5 w-100"
+            >
+              <h2 className="text-center">Hello</h2>
+              <p className="text-muted text-center"> Let's create your account now</p>
+              <div className="mt-3">
+                <p className="fw-bold">Email Address</p>
+                 <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={form.email}
+                  onChange={handleChange}
+                  className="p-2 rounded form-control"
+                />
+              </div>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          className="w-full border p-2 mb-3 rounded"
-        />
+              <div className="mt-3">
+                <p className="fw-bold">Username</p>
+                 <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  value={form.username}
+                  onChange={handleChange}
+                  className="p-2 rounded form-control"
+                />
+              </div>
 
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={form.username}
-          onChange={handleChange}
-          className="w-full border p-2 mb-3 rounded"
-        />
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          className="w-full border p-2 mb-4 rounded"
-        />
+              <div className="mt-3">
+                <p className="fw-bold">Password</p>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={form.password}
+                  onChange={handleChange}
+                  className="p-2 rounded form-control"
+                />
+              </div>
+              
+              <button
+                disabled={loading}
+                type="submit"
+                className="rounded-2 btn btn-primary mt-3 w-100"
+              >
+                {loading ? "Registering..." : "Register"}
+              </button>
 
-        <button
-          disabled={loading}
-          type="submit"
-          className="w-full bg-green-500 text-white p-2 rounded"
-        >
-          {loading ? "Registering..." : "Register"}
-        </button>
-      </form>
+              <div className="mt-3">
+                <p className="text-center">Return to home? <Link href="/">Home</Link></p>
+              </div>
+            </form>
+        </div>
+      </div>
     </div>
+
+    
   );
 }

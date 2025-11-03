@@ -107,7 +107,7 @@ export default function LoginPage() {
             </div>
 
             <div className="mt-3">
-              <p className="text-center">Don't have an account? <Link href="/auth/login">Sign up</Link></p>
+              <p className="text-center">Don't have an account? <Link href="/auth/register">Sign up</Link></p>
             </div>
             <div className="mt-3">
               <p className="text-center">Return to home? <Link href="/">Home</Link></p>
