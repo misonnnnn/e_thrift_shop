@@ -8,7 +8,7 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 // Register route
-router.post('/user/register', async (req, res) => {
+router.post('/auth/register', async (req, res) => {
   try {
     const { email, password, username } = req.body;
 
@@ -67,29 +67,30 @@ router.post('/user/register', async (req, res) => {
 });
 
 // Login route
-router.post('/user/login', async (req, res) => {
+router.post('/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
     const user = await prisma.user.findUnique({ where: { email } });
-    if (!user) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!user) return res.status(400).json(returnResponse(false, 'Invalid credentials'));
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!isMatch) return res.status(400).json(returnResponse(false, 'Invalid credentials'));
 
     const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
       expiresIn: '1d',
     });
 
-    localStorage.setItem(token);
-    res.json({ token, user: { id: user.id, email: user.email, name: user.name } });
+    res.json({ 
+      token, 
+      user: { id: user.id, email: user.email, name: user.name },
+      success : true
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
 });
-
-
 
 
 export default router;

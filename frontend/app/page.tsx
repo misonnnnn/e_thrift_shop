@@ -4,12 +4,19 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faCartFlatbedSuitcase, faCartShopping, faSearch, faSliders, faUser, faUserAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
 
 
 export default function Home() {
+	const { isLoggedIn, user, logout } = useContext(AuthContext);
 
 	const [navbarActive , setNavbarActive ] = useState(false);
+	const [ accountSideBarActive, setAccountSideBarActive ] = useState(false)
+	if (isLoggedIn && !user ) {
+		return <div>Loading...</div>; // prevent stale render
+	}
 	return (
 		<>
 
@@ -21,7 +28,7 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="w-100 py-3 px-lg-5 px-md-3 px-sm-0 px-0 d-flex justify-content-between align-items-center">
-					<div className="me-3 hamburger_menu" onClick={ () => setNavbarActive(true)}>
+					<div className="me-3 hamburger_menu" onClick={ () => [setNavbarActive(true), setAccountSideBarActive(false)]}>
 						<div className="hamburger_menu_line hamburger_menu_line1"></div>
 						<div className="hamburger_menu_line hamburger_menu_line2"></div>
 						<div className="hamburger_menu_line hamburger_menu_line3"></div>
@@ -52,11 +59,54 @@ export default function Home() {
 							<FontAwesomeIcon icon={faSearch} />
 						</div>
 						<div className="me-2">
-							<Link className="text-dark" href="/auth/login"><FontAwesomeIcon icon ={ faUserCircle } /></Link>
-						</div>
-						<div className="me-2">
 							<FontAwesomeIcon icon ={ faCartFlatbedSuitcase} />
 						</div>
+						<div className="me-2" onClick={ () => [setAccountSideBarActive(true) , setNavbarActive(false)]}>
+							<FontAwesomeIcon icon ={ faUserCircle } />
+						</div>
+					</div>
+
+					{/* account sidebar */}
+
+					<div className={ `account_sidebar d-flex justify-content-around align-items-center ` + ( accountSideBarActive ? `end-0` : `` )}>
+						<div className="me-3 hamburger_account_sidebar_close" onClick={ () => setAccountSideBarActive(false)}>
+							<div className="hamburger_account_sidebar_close_line hamburger_account_sidebar_close_line1"></div>
+							<div className="hamburger_account_sidebar_close_line hamburger_account_sidebar_close_line2"></div>
+						</div>
+
+						<div className="text-light ">
+							<div className="m-0 text-uppercase fw-bold">
+								{ 
+									isLoggedIn ? <div><FontAwesomeIcon icon ={ faUserCircle } /> {user?.username} </div> : 
+									
+									<>
+										<div>
+											<Link className="text-light" href="/auth/login">Login</Link>
+										</div> 
+										<div>
+											<Link className="text-light" href="/auth/register">{user?.username}Register</Link>
+										</div> 
+									</>
+								}
+							</div>
+							<span className="text-light-1 fs_small">{ user?.email }</span>
+						</div>
+						
+
+						
+						{ isLoggedIn ? 
+							<>
+								<div className="me-3 mt-5 account_sidebar_link text-light fw-bold">
+									<Link className="text-dark" href="/user/profile">Profile</Link>
+									<hr className="d-block text-light " />
+								</div>
+								<div className="me-3 account_sidebar_link fw-bold text-light" onClick={logout}>
+									Logout
+								</div>
+							</>
+
+							: ``
+						}
 					</div>
 				</div>
 			</div>
