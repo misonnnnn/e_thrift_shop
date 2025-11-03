@@ -80,7 +80,7 @@ export default function Home() {
 						<div className="col-lg-6 col-md-12">
 							<div className="relative ">
 								<Image className="relative"
-									src="/res_main.png"   // File in public/images/
+									src="/main_res.png"   // File in public/images/
 									alt="My banner"
 									width={600}
 									height={600}
