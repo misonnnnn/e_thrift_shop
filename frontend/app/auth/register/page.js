@@ -2,8 +2,6 @@
 import { useState } from "react";
 
 export default function RegisterPage() {
-  const PORT = process.env.PORT || 5000;
-  const BASE_PATH = process.env.NEXT_PUBLIC_API_BASE_PATH || `http://localhost:${PORT}`;
 
   const [form, setForm] = useState({ email: "", username: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -16,7 +14,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${BASE_PATH}/api/auth/register`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

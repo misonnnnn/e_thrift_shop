@@ -8,8 +8,6 @@ import { AuthContext } from "@/context/AuthContext";
 
 export default function LoginPage() {
   const { login } = useContext(AuthContext);
-  const PORT = process.env.PORT || 5000;
-  const BASE_PATH = process.env.NEXT_PUBLIC_API_BASE_PATH || `http://localhost:${PORT}`;
 
   const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "" });
@@ -23,7 +21,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${BASE_PATH}/api/auth/login`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
