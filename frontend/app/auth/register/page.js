@@ -1,8 +1,12 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "@/context/AuthContext";
+import { notFound } from "next/navigation";
 
 export default function RegisterPage() {
+  const { isLoggedIn } = useContext(AuthContext);
 
   const [form, setForm] = useState({ email: "", username: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -30,6 +34,12 @@ export default function RegisterPage() {
 
     setLoading(false);
   };
+
+  useEffect( () => {
+    if(isLoggedIn){
+      notFound();
+    }
+  }, [isLoggedIn])
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 vw-100">

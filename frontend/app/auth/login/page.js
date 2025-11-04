@@ -1,13 +1,13 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { notFound, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 
 export default function LoginPage() {
-  const { login } = useContext(AuthContext);
+  const { login, isLoggedIn } = useContext(AuthContext);
 
   const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "" });
@@ -43,6 +43,12 @@ export default function LoginPage() {
 
     setLoading(false);
   };
+
+  useEffect( () => {
+    if(isLoggedIn){
+      notFound();
+    }
+  }, [isLoggedIn])
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 vw-100">
