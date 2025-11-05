@@ -26,7 +26,7 @@ export default function Home() {
 								<p className="home_text_1">DRESSED TO BE NOTICED.</p>
 								<p className="home_text_3">Discover What’s Trending – Shop the Look</p>
 
-								<Link href ="/shop" className="btn btn-dark">
+								<Link href ="/products/all" className="btn btn-dark">
 									<p className="m-0">Start Shopping <FontAwesomeIcon icon ={faCaretRight} /></p>
 								</Link>
 							</div>
@@ -38,7 +38,7 @@ export default function Home() {
 									alt="My banner"
 									width={600}
 									height={600}
-									 style={{ width: "100%", height: "auto" }}
+									style={{ width: "100%", height: "auto" }}
 								/>
 							</div>
 							

@@ -33,17 +33,21 @@ const [ accountSideBarActive, setAccountSideBarActive ] = useState(false)
                     <div className="hamburger_menu_close_line hamburger_menu_close_line1"></div>
                     <div className="hamburger_menu_close_line hamburger_menu_close_line2"></div>
                 </div>
-
+                
                 <div className="me-3 main_menu_link fw-bold">
-                    <Link className="text-dark" href="/products/category/man">Man</Link>
+                    <Link className="text-dark" href="/products/all">All Products</Link>
                     <hr className="d-block d-md-none text-light " />
                 </div>
                 <div className="me-3 main_menu_link fw-bold">
-                    <Link className="text-dark" href="/products/category/woman">Woman</Link>
+                    <Link className="text-dark" href="/products/man">Man</Link>
+                    <hr className="d-block d-md-none text-light " />
+                </div>
+                <div className="me-3 main_menu_link fw-bold">
+                    <Link className="text-dark" href="/products/woman">Woman</Link>
                     <hr className="d-block d-md-none text-light" />
                 </div>
                 <div className="me-3 main_menu_link fw-bold">
-                    <Link className="text-dark" href="/products/category/sale">Sale</Link>
+                    <Link className="text-dark" href="/products/sale">Sale</Link>
                 </div>
             </div>
 

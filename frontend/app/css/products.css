@@ -1,0 +1,36 @@
+.main_banner{
+    border-radius: 20px;
+    min-height: 250px;
+    top: 0px;
+    background: #FFF;
+    background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(194, 186, 179, 1) 100%);
+    transition: .3s;
+}
+
+.banner_details{
+    transition: .3s;
+}
+
+.main_image_outer img{
+    margin-top:-90px;
+    transition: .3s;
+}
+
+@media screen and (max-width: 767px) {
+    .banner_details {
+        padding: 10px 10px !important;
+    }
+
+    .main_image_outer img{
+        width: 180px;
+        margin-top:-20px;
+    }
+
+    .banner_details h2{
+        font-size: 20px;
+    }
+
+    .banner_details p{
+        font-size: 13px;
+    }
+}
