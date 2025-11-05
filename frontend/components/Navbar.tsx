@@ -33,6 +33,11 @@ const [ accountSideBarActive, setAccountSideBarActive ] = useState(false)
                     <div className="hamburger_menu_close_line hamburger_menu_close_line1"></div>
                     <div className="hamburger_menu_close_line hamburger_menu_close_line2"></div>
                 </div>
+
+                <div className="me-3 main_menu_link fw-bold mb-5" onClick={ () => setNavbarActive(false)}>
+                    <Link className="text-dark" href="/">Home</Link>
+                    <hr className="d-block d-md-none text-light " />
+                </div>
                 
                 <div className="me-3 main_menu_link fw-bold" onClick={ () => setNavbarActive(false)}>
                     <Link className="text-dark" href="/products/all">All Products</Link>
