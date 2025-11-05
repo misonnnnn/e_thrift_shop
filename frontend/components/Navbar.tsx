@@ -34,19 +34,19 @@ const [ accountSideBarActive, setAccountSideBarActive ] = useState(false)
                     <div className="hamburger_menu_close_line hamburger_menu_close_line2"></div>
                 </div>
                 
-                <div className="me-3 main_menu_link fw-bold">
+                <div className="me-3 main_menu_link fw-bold" onClick={ () => setNavbarActive(false)}>
                     <Link className="text-dark" href="/products/all">All Products</Link>
                     <hr className="d-block d-md-none text-light " />
                 </div>
-                <div className="me-3 main_menu_link fw-bold">
+                <div className="me-3 main_menu_link fw-bold" onClick={ () => setNavbarActive(false)}>
                     <Link className="text-dark" href="/products/man">Man</Link>
                     <hr className="d-block d-md-none text-light " />
                 </div>
-                <div className="me-3 main_menu_link fw-bold">
+                <div className="me-3 main_menu_link fw-bold" onClick={ () => setNavbarActive(false)}>
                     <Link className="text-dark" href="/products/woman">Woman</Link>
                     <hr className="d-block d-md-none text-light" />
                 </div>
-                <div className="me-3 main_menu_link fw-bold">
+                <div className="me-3 main_menu_link fw-bold" onClick={ () => setNavbarActive(false)}>
                     <Link className="text-dark" href="/products/sale">Sale</Link>
                 </div>
             </div>
@@ -78,10 +78,10 @@ const [ accountSideBarActive, setAccountSideBarActive ] = useState(false)
                             isLoggedIn ? <div><FontAwesomeIcon icon ={ faUserCircle } /> {user?.username} </div> : 
                             
                             <>
-                                <div>
+                                <div onClick={ () => setAccountSideBarActive(false)}>
                                     <Link className="text-light" href="/auth/login">Login</Link>
                                 </div> 
-                                <div>
+                                <div onClick={ () => setAccountSideBarActive(false)}>
                                     <Link className="text-light" href="/auth/register">{user?.username}Register</Link>
                                 </div> 
                             </>
