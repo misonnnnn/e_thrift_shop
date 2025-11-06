@@ -1,10 +1,45 @@
+"use client"
+
 import "./../../css/products.css";
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faChevronDown, faSliders   } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function show(){
+    const [ categories, setCategories] = useState([]);
+    const [ products, setProducts] = useState([]);
+
+    useEffect(()=>{
+        fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/product/category`, {
+            method: "GET"
+        })
+        .then(res => res.json())
+        .then((data)=>{
+            if(data.success){
+                setCategories(data.data)
+            }
+        }).catch((error) => {
+            console.error("Error fetching categories:", error);
+        });
+
+
+        fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/product`, {
+            method: "GET"
+        })
+        .then(res => res.json())
+        .then((data)=>{
+            if(data.success){
+                setProducts(data.data)
+            }
+        }).catch((error) => {
+            console.error("Error fetching categories:", error);
+        });
+
+    }, []);
+
     return (
         <>
             <div className="container">
@@ -30,81 +65,52 @@ export default function show(){
                     
                 </div>
 
-                <div className="mt-5  fs_small">
+                <div className="mt-5  fs_small w-100 ">
                     <span className="p-2 d-inline d-xl-none border rounded-2 p-2 ">
                         <FontAwesomeIcon icon={faSliders} />
                     </span>
-                    <div className="row w-100">
+                    <div className="row w-100  m-0">
                         <div className="col d-none d-xl-block">
                             <div className="border rounded-4 p-4" >
                                 <div>
                                     <p className="fw-bold">Filter Products</p>
                                 </div>
-
-                                <div className="p-2 mb-2">
-                                    <div className="cursor-pointer d-flex justify-content-between">
-                                        <span>Category</span> <FontAwesomeIcon icon={faChevronDown} />
-                                    </div>
-                                </div>
-
-                                <div className="p-2 mb-2">
-                                    <div className="cursor-pointer d-flex justify-content-between">
-                                        <span>Fashion</span> <FontAwesomeIcon icon={faChevronDown} />
-                                    </div>
-
-                                    <div className="px-3">
-                                        <div className="cursor-pointer d-flex justify-content-between  p-1">
-                                            <div className="d-flex align-items-center">
-                                                <input type="checkbox" id="myCheckbox" />
-                                                <label for="myCheckbox" className="ms-2 text-muted">Jackets & Coats</label>
+                                {
+                                    categories.map(category=>{
+                                        console.log(category)
+                                        const childCategory = category.children || []
+                                        return (
+                                             <div className="p-2 mb-2" key={category.id}>
+                                                <div className="cursor-pointer d-flex justify-content-between">
+                                                    <span>{category['name']}</span> <FontAwesomeIcon icon={faChevronDown} />
+                                                </div>
+                                                {
+                                                    childCategory.length > 0 && (
+                                                        <div className="px-3">
+                                                        {
+                                                            childCategory.map(childCategory =>{
+                                                                return (
+                                                                    <div className="cursor-pointer d-flex justify-content-between  p-1" key={childCategory.id}>
+                                                                        <div className="d-flex align-items-center">
+                                                                            <input type="checkbox" id={childCategory.id} />
+                                                                            <label htmlFor={childCategory.id} className="ms-2 text-muted">{childCategory.name}</label>
+                                                                        </div>
+                                                                        <span>0</span>
+                                                                    </div>
+                                                                );
+                                                            })
+                                                        }
+                                                        </div>
+                                                    )
+                                                }
                                             </div>
-                                            <span>127</span>
-                                        </div>
-                                        <div className="cursor-pointer d-flex justify-content-between p-1">
-                                            <div className="d-flex align-items-center" >
-                                                <input type="checkbox" />
-                                                <span className="ms-2 text-muted">T-Shirts</span>
-                                            </div>
-                                            <span>68</span>
-                                        </div>
-                                        <div className="cursor-pointer d-flex justify-content-between p-1">
-                                            <div className="d-flex align-items-center" >
-                                                <input type="checkbox" />
-                                                <span className="ms-2 text-muted">Shorts</span>
-                                            </div>
-                                            <span>34</span>
-                                        </div>
-                                        <div className="cursor-pointer d-flex justify-content-between p-1">
-                                            <div className="d-flex align-items-center" >
-                                                <input type="checkbox" />
-                                                <span className="ms-2 text-muted">Pants</span>
-                                            </div>
-                                            <span>9</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="p-2 mb-2">
-                                    <div className="cursor-pointer d-flex justify-content-between">
-                                        <span>Shoes</span> <FontAwesomeIcon icon={faChevronDown} />
-                                    </div>
-                                </div>
-
-                                <div className="p-2 mb-2">
-                                    <div className="cursor-pointer d-flex justify-content-between">
-                                        <span>Bag</span> <FontAwesomeIcon icon={faChevronDown} />
-                                    </div>
-                                </div>
-
-                                <div className="p-2 mb-2">
-                                    <div className="cursor-pointer d-flex justify-content-between">
-                                        <span>Accessories</span> <FontAwesomeIcon icon={faChevronDown} />
-                                    </div>
-                                </div>
+                                        );
+                                    })
+                                }
                             </div>        
                         </div>
 
-                        <div className="col-xl-9 col-lg-11 col-md-11">
+                        <div className="col-xl-9 col-lg-12 col-md-12 col-sm-12 ">
                             <div className="w-100 d-flex justify-content-between py-2 ">
                                 <div>
                                     <p>Showing <b>12</b> results from total <b>127</b> for "Jackets & Coats"</p>
@@ -114,6 +120,31 @@ export default function show(){
                                     <span className="fw-bold">Popularity <FontAwesomeIcon icon={faChevronDown} /></span>
                                 </div>
                             </div>
+
+                            <div className="row w-100 m-0">
+                                {
+                                    products.map(product =>{
+                                        return (
+                                            <div className="col-lg-4 col-6" key={product.id}>
+                                                <div className=" p-3 ">
+                                                    <Image className="featured_product_image"
+                                                        src="/featured_products/2.png"  
+                                                        alt=""
+                                                        width={150}
+                                                        height={150}
+                                                    />
+                                                    <div className="d-block">
+                                                        <p className="text-uppercase text-muted fw-bold fs-6 m-0">{product.name}</p>
+                                                        <p className="text-uppercase text-muted fw-bold">120.00</p>
+                                                    </div>
+                                                </div>                                    
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+
+                            
                         </div>
                     </div>
                 </div>

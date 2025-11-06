@@ -22,13 +22,21 @@ async function main() {
   });
 
   // Create product
-  const product = await prisma.product.create({
-    data: {
-      name: "Leather Handbag",
-      description: "High quality leather handbag.",
-      price: 1250,
-      stock: 10,
-    }
+  const product = await prisma.product.createMany({
+    data: [
+      {
+        name: "Leather Handbag",
+        description: "High quality leather handbag.",
+        price: 1250,
+        stock: 10,
+      },
+      {
+        name: "Hoodie Jacket",
+        description: "High quality Hoodie Jacket.",
+        price: 1650,
+        stock: 15,
+      }
+    ]
   });
 
   // Link product to categories (Fashion → Bags)

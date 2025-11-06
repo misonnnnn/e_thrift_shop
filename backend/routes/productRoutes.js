@@ -7,10 +7,20 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 
-router.get("/products/category", async (req, res) => {
+router.get("/product/category", async (req, res) => {
   const data = await prisma.category.findMany({
     include: {
       children: true
+    }
+  });
+  
+  return res.json({ success: true, data });
+});
+
+router.get("/product", async (req, res) => {
+  const data = await prisma.product.findMany({
+    orderBy : {
+      id: 'desc'
     }
   });
   
