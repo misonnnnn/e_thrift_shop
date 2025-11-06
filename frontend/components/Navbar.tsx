@@ -3,8 +3,8 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import {  useState } from "react";
-import {  faCartFlatbedSuitcase,  faSearch,  faUser, faUserAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { faCartFlatbedSuitcase,  faSearch,  faUser, faUserAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 
@@ -34,15 +34,11 @@ export default function Navbar() {
                         <div className="hamburger_menu_close_line hamburger_menu_close_line2"></div>
                     </div>
 
-                    <div className="me-3 main_menu_link fw-bold mb-5" onClick={ () => setNavbarActive(false)}>
+                    <div className="me-3 main_menu_link fw-bold mb-5 mb-md-0 mb-lg-0" onClick={ () => setNavbarActive(false)}>
                         <Link className="text-dark" href="/">Home</Link>
                         <hr className="d-block d-md-none text-light " />
                     </div>
                     
-                    <div className="me-3 main_menu_link fw-bold" onClick={ () => setNavbarActive(false)}>
-                        <Link className="text-dark" href="/products/all">All Products</Link>
-                        <hr className="d-block d-md-none text-light " />
-                    </div>
                     <div className="me-3 main_menu_link fw-bold" onClick={ () => setNavbarActive(false)}>
                         <Link className="text-dark" href="/products/man">Man</Link>
                         <hr className="d-block d-md-none text-light " />

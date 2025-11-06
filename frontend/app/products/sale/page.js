@@ -4,13 +4,13 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faChevronDown, faSliders   } from "@fortawesome/free-solid-svg-icons";
 
-export default function ProductPage(){
+export default function show(){
     return (
         <>
             <div className="container">
                 {/* breadcrumb */}
                 <div className="mt-5 py-2">
-                    <div><Link className = "text-dark" href= "/">Home</Link> &gt; All Products</div>
+                    <div><Link className = "text-dark" href= "/">Home</Link> &gt; Sale</div>
                 </div>
                 <div className="main_banner shadow position-relative  d-flex align-items-center justify-content-between">
                     <div className="px-5 banner_details">
@@ -53,29 +53,29 @@ export default function ProductPage(){
                                     </div>
 
                                     <div className="px-3">
-                                        <div className="cursor-pointer d-flex justify-content-between p-1">
-                                            <div>
-                                                <input type="checkbox" />
-                                                <span className="ms-2 text-muted">Jackets & Coats</span>
+                                        <div className="cursor-pointer d-flex justify-content-between  p-1">
+                                            <div className="d-flex align-items-center">
+                                                <input type="checkbox" id="myCheckbox" />
+                                                <label for="myCheckbox" className="ms-2 text-muted">Jackets & Coats</label>
                                             </div>
                                             <span>127</span>
                                         </div>
                                         <div className="cursor-pointer d-flex justify-content-between p-1">
-                                            <div>
+                                            <div className="d-flex align-items-center" >
                                                 <input type="checkbox" />
                                                 <span className="ms-2 text-muted">T-Shirts</span>
                                             </div>
                                             <span>68</span>
                                         </div>
                                         <div className="cursor-pointer d-flex justify-content-between p-1">
-                                            <div>
+                                            <div className="d-flex align-items-center" >
                                                 <input type="checkbox" />
                                                 <span className="ms-2 text-muted">Shorts</span>
                                             </div>
                                             <span>34</span>
                                         </div>
                                         <div className="cursor-pointer d-flex justify-content-between p-1">
-                                            <div>
+                                            <div className="d-flex align-items-center" >
                                                 <input type="checkbox" />
                                                 <span className="ms-2 text-muted">Pants</span>
                                             </div>

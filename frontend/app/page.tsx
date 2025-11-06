@@ -26,7 +26,7 @@ export default function Home() {
 								<p className="home_text_1">DRESSED TO BE NOTICED.</p>
 								<p className="home_text_3">Discover What’s Trending – Shop the Look</p>
 
-								<Link href ="/products/all" className="btn btn-dark">
+								<Link href ="/products/sale" className="btn btn-dark">
 									<p className="m-0">Start Shopping <FontAwesomeIcon icon ={faCaretRight} /></p>
 								</Link>
 							</div>
