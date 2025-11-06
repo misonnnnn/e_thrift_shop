@@ -42,7 +42,7 @@ async function main() {
   // Link product to categories (Fashion → Bags)
   await prisma.product_category.create({
     data: {
-      product_id: product.id,
+      product_id: 1, //product id : 1
       category_id: bags.id
     }
   });
