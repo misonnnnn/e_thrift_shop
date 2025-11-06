@@ -18,12 +18,12 @@ router.get("/product/category", async (req, res) => {
 });
 
 router.get("/product", async (req, res) => {
-  const category_id = req.query.category_id;
+  const category_ids = req.query.category_ids ? req.query.category_ids.split(',').map(Number) : [];
   const data = await prisma.product.findMany({
-    where: category_id ? {
+    where: category_ids.length > 0 ? {
       categories : {
         some: {
-          category_id: Number(category_id)
+          category_id: { in : category_ids}
         }
       }
     } : {}, 

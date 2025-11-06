@@ -11,6 +11,7 @@ import { useEffect } from "react";
 export default function show(){
     const [ categories, setCategories] = useState([]);
     const [ products, setProducts] = useState([]);
+    const [ categoryIds, setCategoryIds] = useState([]);
 
     useEffect(()=>{
         fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/product/category`, {
@@ -25,8 +26,16 @@ export default function show(){
             console.error("Error fetching categories:", error);
         });
 
+    }, []);
 
-        fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/product`, {
+    useEffect( ()=>{
+        const params = new URLSearchParams();
+
+        if (categoryIds.length > 0){
+            params.append("category_ids", categoryIds.join(','));
+        }
+
+        fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/product?${params.toString()}`, {
             method: "GET"
         })
         .then(res => res.json())
@@ -37,8 +46,19 @@ export default function show(){
         }).catch((error) => {
             console.error("Error fetching categories:", error);
         });
+    }, [categoryIds])
 
-    }, []);
+    const handleCategoryCheckboxChange = (categoryId) => {
+        setCategoryIds((prev) => {
+            // If category is already selected → remove it
+            if (prev.includes(categoryId)) {
+            return prev.filter((id) => id !== categoryId);
+            }
+
+            // Else → add it
+            return [...prev, categoryId];
+        });
+    };
 
     return (
         <>
@@ -92,7 +112,12 @@ export default function show(){
                                                                 return (
                                                                     <div className="cursor-pointer d-flex justify-content-between  p-1" key={childCategory.id}>
                                                                         <div className="d-flex align-items-center">
-                                                                            <input type="checkbox" id={childCategory.id} />
+                                                                            <input 
+                                                                                type="checkbox" 
+                                                                                id={childCategory.id} 
+                                                                                checked={categoryIds.includes(childCategory.id)}
+                                                                                onChange={() => handleCategoryCheckboxChange(childCategory.id)}
+                                                                            />
                                                                             <label htmlFor={childCategory.id} className="ms-2 text-muted">{childCategory.name}</label>
                                                                         </div>
                                                                         <span>0</span>
