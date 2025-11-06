@@ -1,0 +1,50 @@
+import { PrismaClient } from '../node_modules/.prisma/client/default.js';
+const prisma = new PrismaClient();
+
+async function main() {
+    console.log(12)
+  // Create main categories
+  const fashion = await prisma.category.create({
+    data: { name: "Fashion", parent_id: null }
+  });
+
+  const accessories = await prisma.category.create({
+    data: { name: "Accessories", parent_id: null }
+  });
+
+  // Create sub categories under Fashion
+  const shoes = await prisma.category.create({
+    data: { name: "Shoes", parent_id: fashion.id }
+  });
+
+  const bags = await prisma.category.create({
+    data: { name: "Bags", parent_id: fashion.id }
+  });
+
+  // Create product
+  const product = await prisma.product.create({
+    data: {
+      name: "Leather Handbag",
+      description: "High quality leather handbag.",
+      price: 1250,
+      stock: 10,
+    }
+  });
+
+  // Link product to categories (Fashion → Bags)
+  await prisma.product_category.create({
+    data: {
+      product_id: product.id,
+      category_id: bags.id
+    }
+  });
+
+  console.log("✅ Seed completed!");
+}
+
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(() => prisma.$disconnect());
