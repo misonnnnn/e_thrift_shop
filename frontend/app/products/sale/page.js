@@ -12,7 +12,8 @@ export default function show(){
     const [ categories, setCategories] = useState([]);
     const [ products, setProducts] = useState([]);
     const [ categoryIds, setCategoryIds] = useState([]);
-
+    const [ activeDropDownCategoryID, setActiveDropDownCategoryID ] = useState(null);
+    
     useEffect(()=>{
         fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/product/category`, {
             method: "GET"
@@ -21,12 +22,22 @@ export default function show(){
         .then((data)=>{
             if(data.success){
                 setCategories(data.data)
+                
+                if(data.data[0]){
+                    setActiveDropDownCategoryID(data.data[0]['id'])
+                }
             }
         }).catch((error) => {
             console.error("Error fetching categories:", error);
         });
 
     }, []);
+
+    const handleCategoryDropdown = (categoryID) =>{
+        setActiveDropDownCategoryID((prev) =>{
+            return prev == categoryID ? null : categoryID
+        })
+    }
 
     useEffect( ()=>{
         const params = new URLSearchParams();
@@ -97,20 +108,19 @@ export default function show(){
                                 </div>
                                 {
                                     categories.map(category=>{
-                                        console.log(category)
                                         const childCategory = category.children || []
                                         return (
                                              <div className="p-2 mb-2" key={category.id}>
-                                                <div className="cursor-pointer d-flex justify-content-between">
+                                                <div className="cursor-pointer d-flex justify-content-between" onClick={ () => handleCategoryDropdown(category.id)}>
                                                     <span>{category['name']}</span> <FontAwesomeIcon icon={faChevronDown} />
                                                 </div>
                                                 {
                                                     childCategory.length > 0 && (
-                                                        <div className="px-3">
+                                                        <div className={`px-3 ${activeDropDownCategoryID == category.id ? 'd-block' : 'd-none'}`}>
                                                         {
                                                             childCategory.map(childCategory =>{
                                                                 return (
-                                                                    <div className="cursor-pointer d-flex justify-content-between  p-1" key={childCategory.id}>
+                                                                    <div className={`cursor-pointer d-flex justify-content-between overflow-hidden  p-1`} key={childCategory.id} >
                                                                         <div className="d-flex align-items-center">
                                                                             <input 
                                                                                 type="checkbox" 
@@ -118,7 +128,7 @@ export default function show(){
                                                                                 checked={categoryIds.includes(childCategory.id)}
                                                                                 onChange={() => handleCategoryCheckboxChange(childCategory.id)}
                                                                             />
-                                                                            <label htmlFor={childCategory.id} className="ms-2 text-muted">{childCategory.name}</label>
+                                                                            <label htmlFor={childCategory.id} className="ms-2 text-muted" >{childCategory.name}</label>
                                                                         </div>
                                                                         <span>0</span>
                                                                     </div>
