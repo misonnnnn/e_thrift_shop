@@ -13,6 +13,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Status {
+  active
+  inactive
+}
+
+enum Section {
+  men
+  women
+  sale
+}
+
 
 model user {
   id        Int      @id @default(autoincrement())
@@ -30,7 +41,7 @@ model product {
   description String?
   price       Float
   stock       Int      @default(0)
-  status      String   @default("active")
+  status      Status   @default(active)
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -44,7 +55,8 @@ model category {
   parent_id   Int?
   name        String   @unique
   description String?
-  status      String   @default("active")
+  status      Status   @default(active)
+  section     Section? 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

@@ -8,10 +8,17 @@ const prisma = new PrismaClient();
 
 
 router.get("/product/category", async (req, res) => {
+  const section = req.query.section || null;
   const data = await prisma.category.findMany({
+    where: {
+      parent_id : null,
+      ...(section && {
+        section: section
+      })
+    },
     include: {
       children: true
-    }
+    },
   });
   
   return res.json({ success: true, data });
@@ -19,15 +26,32 @@ router.get("/product/category", async (req, res) => {
 
 router.get("/product", async (req, res) => {
   const category_ids = req.query.category_ids ? req.query.category_ids.split(',').map(Number) : [];
+  const validSections = ["men", "women", "sale"];
+  const section = validSections.includes(req.query.section)
+    ? req.query.section
+    : null;
+      
   const data = await prisma.product.findMany({
-    where: category_ids.length > 0 ? {
-      categories : {
-        some: {
-          category_id: { in : category_ids}
+    where: {
+      ...(category_ids.length > 0 && {
+        categories : {
+          some: {
+            category_id: { in : category_ids}
+          }
+        },
+      }),
+
+      ...(section && {
+        categories:{
+          some : {
+            category :{
+              section : section
+            }
+          }
         }
-      }
-    } : {}, 
-   
+      })
+    },
+
     include: {
       categories : {
         include: {

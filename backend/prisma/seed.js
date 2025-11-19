@@ -5,11 +5,11 @@ async function main() {
     console.log(12)
   // Create main categories
   const fashion = await prisma.category.create({
-    data: { name: "Fashion", parent_id: null }
+    data: { name: "Fashion", parent_id: null, section: 'men' }
   });
 
   const accessories = await prisma.category.create({
-    data: { name: "Accessories", parent_id: null }
+    data: { name: "Accessories", parent_id: null, section: 'men'  }
   });
 
   // Create sub categories under Fashion
