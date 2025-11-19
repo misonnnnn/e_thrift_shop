@@ -5,6 +5,6 @@ import Products from '../../../components/Products';
 
 export default function show(){
     return (
-        <Products section="sale" />
+        <Products section="men" />
     )
 }

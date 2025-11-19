@@ -40,7 +40,7 @@ export default function Navbar() {
                     </div>
                     
                     <div className="me-3 main_menu_link fw-bold" onClick={ () => setNavbarActive(false)}>
-                        <Link className="text-dark" href="/products/man">Man</Link>
+                        <Link className="text-dark" href="/products/men">Men</Link>
                         <hr className="d-block d-md-none text-light " />
                     </div>
                     <div className="me-3 main_menu_link fw-bold" onClick={ () => setNavbarActive(false)}>
