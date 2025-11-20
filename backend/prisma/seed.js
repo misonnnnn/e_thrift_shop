@@ -5,11 +5,11 @@ async function main() {
     console.log(12)
   // Create main categories
   const fashion = await prisma.category.create({
-    data: { name: "Fashion", parent_id: null, section: 'men' }
+    data: { name: "Fashion", parent_id: null }
   });
 
   const accessories = await prisma.category.create({
-    data: { name: "Accessories", parent_id: null, section: 'men'  }
+    data: { name: "Accessories", parent_id: null  }
   });
 
   // Create sub categories under Fashion
@@ -27,12 +27,14 @@ async function main() {
       {
         name: "Leather Handbag",
         description: "High quality leather handbag.",
+        section: "women",
         price: 1250,
         stock: 10,
       },
       {
         name: "Hoodie Jacket",
         description: "High quality Hoodie Jacket.",
+        section: "men",
         price: 1650,
         stock: 15,
       }

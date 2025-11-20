@@ -29,7 +29,7 @@ export default function Products({section} : ProductsProp){
     const [ activeDropDownCategoryID, setActiveDropDownCategoryID ] = useState<number | null>(null);
     
     useEffect(()=>{
-        fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/product/category?section=${section}`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/product/category`, {
             method: "GET"
         })
         .then(res => res.json())

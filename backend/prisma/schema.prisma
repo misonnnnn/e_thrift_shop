@@ -42,7 +42,7 @@ model product {
   price       Float
   stock       Int      @default(0)
   status      Status   @default(active)
-
+  section     Section?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

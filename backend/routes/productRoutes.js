@@ -8,14 +8,7 @@ const prisma = new PrismaClient();
 
 
 router.get("/product/category", async (req, res) => {
-  const section = req.query.section || null;
   const data = await prisma.category.findMany({
-    where: {
-      parent_id : null,
-      ...(section && {
-        section: section
-      })
-    },
     include: {
       children: true
     },
@@ -42,13 +35,7 @@ router.get("/product", async (req, res) => {
       }),
 
       ...(section && {
-        categories:{
-          some : {
-            category :{
-              section : section
-            }
-          }
-        }
+          section : section
       })
     },
 
