@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useState, useEffect, ReactNode } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 export const AuthContext = createContext<any>(null);
 
@@ -9,6 +9,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -29,7 +30,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     setUser(null);
-    router.refresh()
+    setIsAdminLoggedIn(false);
+    // router.refresh()
+    redirect('/');
   };
 
   const getUser = async (token: string) => {
@@ -42,7 +45,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const data = await res.json();
 
       if (data.success) {
-        setUser(data.user); // store user in context
+        setUser(data.user);
+        if(data.user.role == 'admin'){
+          setIsAdminLoggedIn(true)
+        }
       }
     } catch (err) {
       console.error("Error fetching user:", err);
@@ -50,7 +56,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, login, logout, isAdminLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );

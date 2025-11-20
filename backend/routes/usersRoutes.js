@@ -20,7 +20,7 @@ const prisma = new PrismaClient();
 router.get("/user/me", verifyToken, async (req, res) => {
   const user = await prisma.user.findUnique({
     where: { id: req.user.id },
-    select: { id: true, username: true, email: true } // exclude password
+    select: { id: true, username: true, email: true, role: true } // exclude password
   });
   
   return res.json({ success: true, user });

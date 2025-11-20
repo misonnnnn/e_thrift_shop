@@ -7,10 +7,15 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 
 export default function Home() {
-	const { isLoggedIn, user, logout } = useContext(AuthContext);
+	const { isLoggedIn, user, logout, isAdminLoggedIn } = useContext(AuthContext);
+
+	if(isAdminLoggedIn){
+		redirect('/admin')
+	}
 
 	if (isLoggedIn && !user ) {
 		return <div>Loading...</div>; // prevent stale render
